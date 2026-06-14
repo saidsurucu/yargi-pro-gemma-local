@@ -6,6 +6,14 @@ param(
     [int]$Port = 8080
 )
 $ErrorActionPreference = 'Stop'
+
+# CUDA runtime DLL'leri icin env'i tazele (PATH'e CUDA bin gerekir).
+foreach ($scope in 'Machine','User') {
+    $vars = [System.Environment]::GetEnvironmentVariables($scope)
+    foreach ($k in $vars.Keys) { if ($k -ine 'Path') { Set-Item -Path "Env:$k" -Value $vars[$k] -ErrorAction SilentlyContinue } }
+}
+$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
 $root = Split-Path -Parent $PSScriptRoot
 $vendor = Join-Path $root 'vendor\llama-cpp-turboquant'
 $model = Join-Path $root 'models\gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf'
