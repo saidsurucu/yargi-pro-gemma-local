@@ -18,6 +18,12 @@ irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/inst
 
 Gerisi otomatik: paket yöneticisi (Chocolatey/Homebrew) → CMake → CUDA(Win)/Metal(Mac) → TheTom fork derleme → model (~14 GB) → opencode CLI+desktop → MCP. Bitince Win'de `.\scripts\start-server.ps1`, Mac'te `./scripts/start-server.sh` çalıştır, opencode'u aç.
 
+### Gereksinimler
+- **Windows:** NVIDIA kartı (RTX 20xx–50xx) + **sürücü ≥ 570.65** (installer kontrol eder), ~20 GB boş disk.
+- **macOS:** Apple Silicon (Metal), ~20 GB boş disk.
+- Kurulum **derleme yapmaz** — binary'ler GitHub'dan hazır iner (~15 dk, çoğu model indirme).
+- Kurulum sonrası: **"Yargı Pro"** kısayolu (Win masaüstü / Mac Launchpad) → sunucuyu başlatır + opencode'u açar.
+
 ### Desteklenen donanım + otomatik model seçimi
 Kurulum belleğe göre **modeli otomatik seçer**:
 
