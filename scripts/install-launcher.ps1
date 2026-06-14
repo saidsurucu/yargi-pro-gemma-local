@@ -16,11 +16,12 @@ $ws = New-Object -ComObject WScript.Shell
 $targets = @([Environment]::GetFolderPath('Desktop'), (Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs'))
 foreach ($dir in $targets) {
     New-Item -ItemType Directory -Force -Path $dir | Out-Null
-    $lnk = $ws.CreateShortcut((Join-Path $dir 'Yargi Pro.lnk'))
+    Remove-Item (Join-Path $dir 'Yargi Pro.lnk') -Force -ErrorAction SilentlyContinue  # eski ad
+    $lnk = $ws.CreateShortcut((Join-Path $dir 'Gemma Yargi Pro.lnk'))
     $lnk.TargetPath = "$env:SystemRoot\System32\wscript.exe"
     $lnk.Arguments = "${q}$vbs${q}"
     $lnk.WorkingDirectory = $root
     if (Test-Path $icon) { $lnk.IconLocation = $icon }
     $lnk.Save()
-    Write-Host "kisayol -> $(Join-Path $dir 'Yargi Pro.lnk')" -ForegroundColor Green
+    Write-Host "kisayol -> $(Join-Path $dir 'Gemma Yargi Pro.lnk')" -ForegroundColor Green
 }

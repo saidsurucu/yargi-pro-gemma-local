@@ -1,4 +1,4 @@
-# Yargi Pro kontrol paneli - Windows sistem tepsisi. Sunucu durum + Baslat/Durdur/Ac/Cikis.
+# Gemma Yargi Pro kontrol paneli - Windows sistem tepsisi. Sunucu durum + Baslat/Durdur/Ac/Cikis.
 $ErrorActionPreference = 'SilentlyContinue'
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
@@ -39,7 +39,7 @@ $iconRed   = New-DotIcon ([System.Drawing.Color]::Firebrick)
 
 $notify = New-Object System.Windows.Forms.NotifyIcon
 $notify.Icon = $iconRed
-$notify.Text = 'Yargi Pro'
+$notify.Text = 'Gemma Yargi Pro'
 $notify.Visible = $true
 
 $menu = New-Object System.Windows.Forms.ContextMenuStrip
@@ -68,7 +68,7 @@ $miBaslat.Add_Click({
     if (-not (Test-Server)) {
         Start-Process powershell -WindowStyle Hidden -ArgumentList `
           "-NoProfile -ExecutionPolicy Bypass -File `"$root\scripts\start-server.ps1`""
-        $notify.ShowBalloonTip(3000, 'Yargi Pro', 'Sunucu baslatiliyor (model yuklenirken biraz bekleyin)...', 'Info')
+        $notify.ShowBalloonTip(3000, 'Gemma Yargi Pro', 'Sunucu baslatiliyor (model yuklenirken biraz bekleyin)...', 'Info')
     }
 })
 $miDurdur.Add_Click({ Stop-LlamaServer })
@@ -84,10 +84,10 @@ $timer = New-Object System.Windows.Forms.Timer
 $timer.Interval = 3000
 $timer.Add_Tick({
     if (Test-Server) {
-        $notify.Icon = $iconGreen; $notify.Text = 'Yargi Pro: calisiyor'
+        $notify.Icon = $iconGreen; $notify.Text = 'Gemma Yargi Pro: calisiyor'
         $miDurum.Text = 'Durum: Sunucu calisiyor'
     } else {
-        $notify.Icon = $iconRed; $notify.Text = 'Yargi Pro: kapali'
+        $notify.Icon = $iconRed; $notify.Text = 'Gemma Yargi Pro: kapali'
         $miDurum.Text = 'Durum: Kapali'
     }
 })

@@ -43,7 +43,7 @@ irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/inst
 **5. (En önemli adım) Bekleyin.** Ekranda bir sürü yazı akmaya başlar; bu tamamen **normaldir**, kurulum çalışıyordur. İnternetten büyük dosyalar indirildiği için bilgisayarınıza ve internet hızınıza göre **15 dakika ile 1 saat** sürebilir.
 👉 Lütfen **pencereyi kapatmayın, bilgisayarı uyutmayın.**
 
-**6.** İşlem bitince **"HER SEY HAZIR"** yazısını görürsünüz ve **masaüstünüzde "Yargı Pro"** adlı yeni bir simge belirir.
+**6.** İşlem bitince **"HER SEY HAZIR"** yazısını görürsünüz ve **masaüstünüzde "Gemma Yargı Pro"** adlı yeni bir simge belirir.
 
 ➡️ Şimdi aşağıdaki **"Programı açma ve kullanma"** bölümüne geçin.
 
@@ -65,7 +65,7 @@ irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/inst
 
 **5.** Yazılar akar — normaldir. **15 dakika ile 1 saat** sürebilir. Lütfen pencereyi kapatmayın.
 
-**6.** İşlem bitince **Launchpad**'de (uygulamalar ekranı) **"Yargı Pro"** uygulaması çıkar.
+**6.** İşlem bitince **Launchpad**'de (uygulamalar ekranı) **"Gemma Yargı Pro"** uygulaması çıkar.
 
 ➡️ Şimdi aşağıdaki **"Programı açma ve kullanma"** bölümüne geçin.
 
@@ -73,9 +73,9 @@ irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/inst
 
 ## Programı açma ve kullanma
 
-Kurulum sonrası "Yargı Pro" küçük bir **kontrol panelidir** — asistanı başlatıp durdurmanızı sağlar.
+Kurulum sonrası "Gemma Yargı Pro" küçük bir **kontrol panelidir** — asistanı başlatıp durdurmanızı sağlar.
 
-**1.** **"Yargı Pro"** simgesine çift tıklayın (Windows'ta masaüstünde, Mac'te Launchpad'de). Ekranın köşesinde küçük bir ikon belirir (Windows'ta sağ alttaki görev çubuğunda, Mac'te sağ üstteki menü çubuğunda). İkon **kırmızı** ise asistan henüz kapalıdır.
+**1.** **"Gemma Yargı Pro"** simgesine çift tıklayın (Windows'ta masaüstünde, Mac'te Launchpad'de). Ekranın köşesinde küçük bir ikon belirir (Windows'ta sağ alttaki görev çubuğunda, Mac'te sağ üstteki menü çubuğunda). İkon **kırmızı** ise asistan henüz kapalıdır.
 
 **2.** Bu küçük ikona **tıklayın** → açılan menüden **"Başlat"**a tıklayın. Asistan hazırlanır; bu **30 saniye – 1 dakika** sürebilir. Hazır olunca ikon **yeşile** döner.
 
@@ -92,7 +92,7 @@ Kurulum sonrası "Yargı Pro" küçük bir **kontrol panelidir** — asistanı b
 
 **İşiniz bitince:** Köşedeki ikona tıklayıp **"Durdur"** (veya **"Çıkış"**) diyebilirsiniz.
 
-**Sonraki günler:** Tekrar kurulum yoktur. Yalnızca "Yargı Pro"yu açıp **Başlat → opencode'u Aç** demeniz yeterlidir.
+**Sonraki günler:** Tekrar kurulum yoktur. Yalnızca "Gemma Yargı Pro"yu açıp **Başlat → opencode'u Aç** demeniz yeterlidir.
 
 ---
 

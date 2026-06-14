@@ -31,7 +31,7 @@ Binary'ler tüm kartları kapsayan tek bir çoklu-mimari (sm_75/86/89/120) derle
 
 ## Kontrol paneli (sistem tepsisi / menü çubuğu)
 
-Kurulumdan sonra **"Yargı Pro"** kısayolu oluşur (Windows masaüstü ve Başlat menüsü / macOS Launchpad). Çift tıklayınca köşede küçük bir ikon belirir (Windows'ta görev çubuğu tepsisi, macOS'te menü çubuğu). İkona **sol veya sağ tıklayarak** menüye ulaşırsınız:
+Kurulumdan sonra **"Gemma Yargı Pro"** kısayolu oluşur (Windows masaüstü ve Başlat menüsü / macOS Launchpad). Çift tıklayınca köşede küçük bir ikon belirir (Windows'ta görev çubuğu tepsisi, macOS'te menü çubuğu). İkona **sol veya sağ tıklayarak** menüye ulaşırsınız:
 
 | Menü | İşlev |
 |---|---|

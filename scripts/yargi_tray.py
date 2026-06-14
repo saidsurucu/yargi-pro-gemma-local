@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Yargi Pro kontrol paneli - macOS menu bar (rumps).
+# Gemma Yargi Pro kontrol paneli - macOS menu bar (rumps).
 import os
 import socket
 import subprocess
@@ -22,7 +22,7 @@ def server_up():
 
 class YargiApp(rumps.App):
     def __init__(self):
-        super().__init__("Yargi Pro", title="\U0001F534", quit_button=None)
+        super().__init__("Gemma Yargi Pro", title="\U0001F534", quit_button=None)
         self.durum = rumps.MenuItem("Durum: kontrol ediliyor...")
         self.menu = [
             self.durum,
@@ -45,7 +45,7 @@ class YargiApp(rumps.App):
             log = open("/tmp/yargi-server.log", "a")
             subprocess.Popen(["bash", START_SH], start_new_session=True,
                              stdout=log, stderr=subprocess.STDOUT)
-            rumps.notification("Yargi Pro", "", "Sunucu baslatiliyor (model yuklenirken bekleyin)...")
+            rumps.notification("Gemma Yargi Pro", "", "Sunucu baslatiliyor (model yuklenirken bekleyin)...")
 
     def durdur(self, _):
         subprocess.run(["pkill", "-f", "llama-server"])

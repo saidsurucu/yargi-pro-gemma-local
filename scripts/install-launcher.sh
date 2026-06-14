@@ -2,7 +2,7 @@
 # macOS: izole venv + rumps, menu-cubugu panelini (yargi_tray.py) baslatan /Applications app uret.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APP="/Applications/Yargi Pro.app"
+APP="/Applications/Gemma Yargi Pro.app"
 VENV="$ROOT/.venv"
 
 if [ -x /opt/homebrew/bin/brew ]; then eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -22,6 +22,7 @@ do shell script "__PY__ __ROOT__/scripts/yargi_tray.py > /tmp/yargi-tray.log 2>&
 APPLESCRIPT
 sed -i '' "s|__PY__|$PY|; s|__ROOT__|$ROOT|" "$TMP"
 
+rm -rf "/Applications/Yargi Pro.app"  # eski ad
 rm -rf "$APP"
 osacompile -o "$APP" "$TMP"
 rm -f "$TMP"
