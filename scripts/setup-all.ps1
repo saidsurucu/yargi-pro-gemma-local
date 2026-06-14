@@ -71,8 +71,8 @@ Write-Host "`n--- Inference engine derleniyor (uzun surebilir) ---" -ForegroundC
 Write-Host "`n--- Model indiriliyor (~14.2 GB) ---" -ForegroundColor Cyan
 & "$root\scripts\download-model.ps1"
 
-Write-Host "`n--- Yargi Pro MCP ekleniyor ---" -ForegroundColor Cyan
-& "$root\scripts\install-mcp.ps1"
+Write-Host "`n--- opencode (CLI + desktop) + Yargi Pro MCP ---" -ForegroundColor Cyan
+& "$root\scripts\install-opencode.ps1"
 
 Write-Host "`n=== HER SEY HAZIR ===" -ForegroundColor Green
 Write-Host "Sunucuyu baslat: .\scripts\start-server.ps1" -ForegroundColor Green
