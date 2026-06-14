@@ -1,118 +1,115 @@
 # Yargı Pro — Kurulum Rehberi (Adım Adım)
 
-Bu rehber **avukatlar ve teknik olmayan kullanıcılar** içindir. Bilgisayar bilgisi gerektirmez. Adımları sırayla takip etmen yeterli. Takılırsan en alttaki **"Takılırsan"** bölümüne bak.
+Bu rehber **avukatlar ve teknik olmayan kullanıcılar** içindir. Bilgisayar bilgisi gerektirmez; adımları sırayla takip etmeniz yeterlidir. Bir yerde takılırsanız en alttaki **"Takıldığınızda"** bölümüne bakabilirsiniz.
 
 ---
 
 ## Bu nedir?
 
-Bilgisayarına, **kendi bilgisayarında çalışan** bir yapay zekâ hukuk asistanı kuruyoruz. Bu asistan Yargı Pro'nun hukuk veritabanına bağlanır; Yargıtay, Danıştay, Anayasa Mahkemesi kararlarını ve mevzuatı bulur, özetler, sorularını yanıtlar.
+Bilgisayarınıza, **kendi bilgisayarınızda çalışan** bir yapay zekâ hukuk asistanı kuruyoruz. Bu asistan Yargı Pro'nun hukuk veritabanına bağlanır; Yargıtay, Danıştay, Anayasa Mahkemesi kararlarını ve mevzuatı bulur, özetler ve sorularınızı yanıtlar.
 
-Asistan **senin bilgisayarında** çalıştığı için hızlıdır ve bir kez kurulduktan sonra hep hazırdır.
-
----
-
-## Önce: Bilgisayarın uygun mu?
-
-**Windows bilgisayarı kullanıyorsan:**
-- **"NVIDIA" marka ekran kartı** olmalı (çoğu oyun bilgisayarında vardır).
-- Boş disk alanı: en az **20 GB**.
-
-**Mac kullanıyorsan:**
-- **Apple M1 / M2 / M3 / M4** işlemcili bir Mac olmalı.
-- Boş disk alanı: en az **20 GB**.
-
-> Emin değil misin? Sorun değil. Kurulum en başta otomatik kontrol eder; bilgisayarın uygun değilse **anlaşılır bir Türkçe mesajla durur**, sana ne gerektiğini söyler. Bir şeyi bozma ihtimalin yok.
+Asistan sizin bilgisayarınızda çalıştığı için bir kez kurulduktan sonra her zaman hazırdır.
 
 ---
 
-## WINDOWS — Adım Adım
+## Önce: Bilgisayarınız uygun mu?
 
-**1. Programı aç.**
-Klavyede **Windows tuşuna** bas. Açılan arama kutusuna **PowerShell** yaz. Çıkan **"Windows PowerShell"**e tıkla. Mavi (veya siyah) bir pencere açılır.
+**Windows kullanıyorsanız:**
+- **"NVIDIA" marka ekran kartı** bulunmalıdır (çoğu oyun bilgisayarında vardır).
+- En az **20 GB** boş disk alanı.
 
-**2. Şu yazıyı kopyala.**
-Aşağıdaki kutunun **sağ üst köşesindeki kopyala simgesine** tıkla (yazının tamamı kopyalanır):
+**Mac kullanıyorsanız:**
+- **Apple M1 / M2 / M3 / M4** işlemcili bir Mac olmalıdır.
+- En az **20 GB** boş alan.
+
+> Emin değil misiniz? Sorun değil. Kurulum en başta otomatik kontrol eder; bilgisayarınız uygun değilse **anlaşılır bir mesajla durur** ve neyin gerektiğini söyler. Bir şeyi bozma ihtimaliniz yoktur.
+
+---
+
+## Kurulum — Windows
+
+**1.** Klavyede **Windows tuşuna** basın. Açılan arama kutusuna **PowerShell** yazın ve çıkan **"Windows PowerShell"** uygulamasına tıklayın. Mavi (veya siyah) bir pencere açılır.
+
+**2.** Aşağıdaki kutunun **sağ üst köşesindeki kopyala simgesine** tıklayın (yazının tamamı kopyalanır):
 
 ```
 irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/install.ps1 | iex
 ```
 
-**3. Yapıştır ve başlat.**
-Az önce açtığın mavi pencerenin içine **sağ tıkla** (sağ tıklamak yapıştırır). Sonra klavyede **Enter**'a bas.
+**3.** Açtığınız pencerenin içine **sağ tıklayın** (sağ tıklamak yapıştırır), ardından **Enter**'a basın.
 
-**4. İzin ver.**
-"Bu uygulamanın cihazınızda değişiklik yapmasına izin veriyor musunuz?" diye bir pencere çıkarsa **Evet**'e tıkla.
+**4.** "Bu uygulamanın cihazınızda değişiklik yapmasına izin veriyor musunuz?" penceresi çıkarsa **Evet**'e tıklayın.
 
-**5. Bekle. (En önemli adım!)**
-Şimdi ekranda **bir sürü yazı akmaya başlar.** Bu tamamen **normaldir** — bir şey bozmuyorsun, sadece kurulum çalışıyor. Kurulum internetten büyük dosyalar indirir; bilgisayarına ve internet hızına göre **15 dakika ile 1 saat** sürebilir.
-👉 **Pencereyi kapatma, bilgisayarı uyutma.** Çayını al, bekle.
+**5. (En önemli adım) Bekleyin.** Ekranda bir sürü yazı akmaya başlar; bu tamamen **normaldir**, kurulum çalışıyordur. İnternetten büyük dosyalar indirildiği için bilgisayarınıza ve internet hızınıza göre **15 dakika ile 1 saat** sürebilir.
+👉 Lütfen **pencereyi kapatmayın, bilgisayarı uyutmayın.**
 
-**6. Bittiğini anla.**
-Ekranda **"HER SEY HAZIR"** yazısını görürsün ve **masaüstünde "Yargı Pro"** adında yeni bir simge belirir.
+**6.** İşlem bitince **"HER SEY HAZIR"** yazısını görürsünüz ve **masaüstünüzde "Yargı Pro"** adlı yeni bir simge belirir.
 
-**7. Programı aç.**
-Masaüstündeki **"Yargı Pro"** simgesine **çift tıkla.** Kısa bir hazırlığın ardından program açılır. (İlk açılış biraz uzun sürebilir, normaldir.)
-
-**8. Giriş yap.**
-İlk kullanımda tarayıcı açılıp **Yargı Pro hesabınla giriş** yapmanı isteyebilir. Her zamanki gibi giriş yap.
-
-**9. Sor.**
-Artık hukuki sorunu yazabilirsin. Örnek:
-> *"Kira tespiti davasında güncel bir Yargıtay kararı bul ve özetle."*
-
-**Sonraki günler:** Bir daha kurulum yok. Sadece masaüstündeki **"Yargı Pro"** simgesine çift tıkla, yeter.
+➡️ Şimdi aşağıdaki **"Programı açma ve kullanma"** bölümüne geçin.
 
 ---
 
-## MAC — Adım Adım
+## Kurulum — Mac
 
-**1. Terminal'i aç.**
-Sağ üstteki **büyüteç** simgesine (veya **Cmd + Boşluk**) tıkla, **Terminal** yaz, Enter'a bas. Bir pencere açılır.
+**1.** Sağ üstteki **büyüteç** simgesine (veya **Cmd + Boşluk**) tıklayın, **Terminal** yazın ve Enter'a basın. Bir pencere açılır.
 
-**2. Şu yazıyı kopyala:**
+**2.** Aşağıdaki yazıyı kopyalayın:
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/install.sh)"
 ```
 
-**3. Yapıştır ve başlat.**
-Terminal penceresine **Cmd + V** ile yapıştır, **Enter**'a bas.
+**3.** Terminal penceresine **Cmd + V** ile yapıştırın ve **Enter**'a basın.
 
-**4. Şifre isterse.**
-Mac açılış şifreni yaz (yazarken ekranda **görünmez**, bu normaldir), Enter'a bas.
+**4.** Şifre isterse Mac açılış şifrenizi yazın (yazarken ekranda **görünmez**, bu normaldir) ve Enter'a basın.
 
-**5. Bekle.**
-Yazılar akar — normaldir. **15 dakika – 1 saat** sürebilir. Pencereyi kapatma.
+**5.** Yazılar akar — normaldir. **15 dakika ile 1 saat** sürebilir. Lütfen pencereyi kapatmayın.
 
-**6. Programı aç.**
-Bitince **Launchpad**'de (uygulamalar ekranı) **"Yargı Pro"** çıkar. Tıkla.
+**6.** İşlem bitince **Launchpad**'de (uygulamalar ekranı) **"Yargı Pro"** uygulaması çıkar.
 
-**7. Giriş yap, sor.**
-Program açılır → Yargı Pro hesabınla giriş yap → hukuki sorunu yaz.
-
-**Sonraki günler:** Launchpad'den **"Yargı Pro"**ya tıkla, yeter.
+➡️ Şimdi aşağıdaki **"Programı açma ve kullanma"** bölümüne geçin.
 
 ---
 
-## Hız hakkında — önemli (yavaş = bozuk DEĞİL!)
+## Programı açma ve kullanma
 
-Program, bilgisayarının gücüne göre **iki modelden birini otomatik seçer.** Güçlü bilgisayarlar büyük ve hızlı modeli; daha az güçlüler **küçük modeli** alır.
+Kurulum sonrası "Yargı Pro" küçük bir **kontrol panelidir** — asistanı başlatıp durdurmanızı sağlar.
 
-- **Küçük modeli aldıysan cevaplar daha yavaş gelir — bu tamamen normaldir, program bozuk değildir.** (Teknik sebep: küçük model "yoğun" çalışır; büyük model aslında daha verimli/hızlıdır.)
-- **İlk soru her zaman en yavaşıdır** — program ilk soruda "ısınır", cevap birkaç dakika sürebilir. **Sonraki sorular belirgin daha hızlı** gelir.
-- Cevap yazılırken **bekle, kapatma.** Ekranda yazı akmaya / "düşünüyor" görünmeye başladıysa çalışıyor demektir.
+**1.** **"Yargı Pro"** simgesine çift tıklayın (Windows'ta masaüstünde, Mac'te Launchpad'de). Ekranın köşesinde küçük bir ikon belirir (Windows'ta sağ alttaki görev çubuğunda, Mac'te sağ üstteki menü çubuğunda). İkon **kırmızı** ise asistan henüz kapalıdır.
 
-Yani "çok yavaş, çalışmıyor herhalde" deme — özellikle ilk soruda **sabret**. 🙂
+**2.** Bu küçük ikona **tıklayın** → açılan menüden **"Başlat"**a tıklayın. Asistan hazırlanır; bu **30 saniye – 1 dakika** sürebilir. Hazır olunca ikon **yeşile** döner.
+
+**3.** İkona tekrar tıklayın → **"opencode'u Aç"**. Yargı Pro programı açılır.
+
+**4.** İlk kullanımda tarayıcı açılıp **Yargı Pro hesabınızla giriş** yapmanızı isteyebilir; her zamanki gibi giriş yapın.
+
+**5.** Artık hukuki sorunuzu yazabilirsiniz. Örnek:
+> *"Kira tespiti davasında güncel bir Yargıtay kararı bulup özetler misiniz?"*
+
+**İşiniz bitince:** Köşedeki ikona tıklayıp **"Durdur"** (veya **"Çıkış"**) diyebilirsiniz.
+
+**Sonraki günler:** Tekrar kurulum yoktur. Yalnızca "Yargı Pro"yu açıp **Başlat → opencode'u Aç** demeniz yeterlidir.
 
 ---
 
-## Takılırsan
+## Hız hakkında — önemli (yavaşlık arıza değildir)
 
-- **Ekranda kırmızı bir yazı / hata görürsen** ya da bir şey çalışmazsa: **ekran görüntüsü al** (Windows: `Win + Shift + S`, Mac: `Cmd + Shift + 4`) ve yetkiliye gönder. Kurulum, olanları bir kayıt dosyasına da yazar; o dosyayı istersek göndermeni rica ederiz, gerisini biz hallederiz.
-- **Kurulumu yanlışlıkla kapattıysan:** Aynı komutu (2. adımdaki yazıyı) tekrar çalıştır — **kaldığı yerden devam eder**, baştan inmez.
-- **"Sürücünü güncelle" derse (Windows):** Ekran kartı sürücün eski demektir. NVIDIA'nın güncelleme programını (GeForce Experience) açıp güncelle, sonra komutu tekrar çalıştır.
+Program, bilgisayarınızın gücüne göre **iki modelden birini otomatik seçer.** Güçlü bilgisayarlar büyük ve hızlı modeli; daha az güçlü olanlar küçük modeli alır.
+
+- **Küçük modeli aldıysanız cevaplar daha yavaş gelir — bu tamamen normaldir, program arızalı değildir.**
+- **İlk soru her zaman en yavaşıdır** — program ilk soruda "ısınır" ve cevap birkaç dakika sürebilir. **Sonraki sorular belirgin şekilde daha hızlı** gelir.
+- Cevap yazılırken lütfen **bekleyin, pencereyi kapatmayın.** Ekranda yazı akmaya ya da "düşünüyor" görünmeye başladıysa program çalışıyordur.
+
+Kısacası "çok yavaş, herhalde çalışmıyor" diye düşünmeyin — özellikle ilk soruda biraz **sabırlı olun**.
 
 ---
 
-Hepsi bu kadar. Teknik bilgiye gerek yok — takılırsan **fotoğraf çek, gönder**, biz çözeriz. 🙂
+## Takıldığınızda
+
+- **Bir hata görürseniz veya bir şey çalışmazsa:** **ekran görüntüsü alın** (Windows: `Win + Shift + S`, Mac: `Cmd + Shift + 4`) ve yetkiliye gönderin. Kurulum, olanları bir kayıt dosyasına yazar; gerekirse o dosyayı da isteyebiliriz.
+- **Kurulumu yanlışlıkla kapattıysanız:** Aynı komutu (2. adımdaki yazıyı) tekrar çalıştırın — **kaldığı yerden devam eder**, baştan indirmez.
+- **"Sürücünüzü güncelleyin" derse (Windows):** Ekran kartı sürücünüz eskidir. NVIDIA'nın güncelleme uygulamasını (GeForce Experience) açıp güncelleyin, sonra komutu tekrar çalıştırın.
+
+---
+
+Hepsi bu kadar. Teknik bilgiye gerek yoktur — takılırsanız **ekran görüntüsü alıp gönderin**, gerisini biz hallederiz.
