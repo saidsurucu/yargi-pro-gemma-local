@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
-# /Applications/Yargi Pro.app uretir. osacompile ile AppleScript app -> LaunchServices kabul eder
-# (elle yapilmis .app bundle -1712 hatasi veriyordu). Cift tik: sunucu kapaliysa baslat + opencode ac.
+# macOS: python3+rumps sagla, menu-cubugu panelini (yargi_tray.py) baslatan /Applications app uret.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 APP="/Applications/Yargi Pro.app"
 
+if [ -x /opt/homebrew/bin/brew ]; then eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then eval "$(/usr/local/bin/brew shellenv)"; fi
+
+# python3 + rumps
+command -v python3 >/dev/null 2>&1 || brew install python
+python3 -c "import rumps" >/dev/null 2>&1 || python3 -m pip install --user rumps
+
+PY="$(command -v python3)"
 TMP="$(mktemp).applescript"
-# Quoted heredoc: icerik birebir; __ROOT__ placeholder'i sonra degistirilir.
 cat > "$TMP" <<'APPLESCRIPT'
-do shell script "ROOT='__ROOT__'; /usr/bin/curl -s http://127.0.0.1:8080/v1/models >/dev/null 2>&1 || ( /usr/bin/nohup /bin/bash \"$ROOT/scripts/start-server.sh\" > /tmp/yargi-server.log 2>&1 & ); /usr/bin/open -a OpenCode"
+do shell script "__PY__ __ROOT__/scripts/yargi_tray.py > /tmp/yargi-tray.log 2>&1 &"
 APPLESCRIPT
-sed -i '' "s|__ROOT__|$ROOT|" "$TMP"
+sed -i '' "s|__PY__|$PY|; s|__ROOT__|$ROOT|" "$TMP"
 
 rm -rf "$APP"
 osacompile -o "$APP" "$TMP"
 rm -f "$TMP"
-# ad-hoc imza (gelecekteki Gatekeeper sikiligi icin garanti)
 codesign --force --deep --sign - "$APP" 2>/dev/null || true
-echo "Launcher -> $APP"
+echo "Launcher (menu-cubugu paneli) -> $APP"
