@@ -5,6 +5,7 @@ on:
 permissions:
   contents: write
 
+# Her job kendi zip'ini DOGRUDAN binaries-v1 release'ine yukler; biri digerini beklemez.
 jobs:
   win-cuda:
     # windows-2022 = VS 2022 (CUDA 12.8 resmi destekler). windows-latest VS 2026 tasiyor -> nvcc reddeder.
@@ -24,41 +25,30 @@ jobs:
       - name: Build
         shell: pwsh
         run: ./scripts/ci-build-win.ps1
-      - uses: actions/upload-artifact@v4
+      - name: Publish to release
+        uses: softprops/action-gh-release@v2
         with:
-          name: win-cuda
-          path: llama-turboquant-win-cuda.zip
+          tag_name: binaries-v1
+          files: llama-turboquant-win-cuda.zip
 
   mac-arm64:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - run: bash scripts/ci-build-mac.sh arm64
-      - uses: actions/upload-artifact@v4
+      - name: Publish to release
+        uses: softprops/action-gh-release@v2
         with:
-          name: mac-arm64
-          path: llama-turboquant-mac-arm64.zip
+          tag_name: binaries-v1
+          files: llama-turboquant-mac-arm64.zip
 
   mac-x64:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
       - run: bash scripts/ci-build-mac.sh x64
-      - uses: actions/upload-artifact@v4
-        with:
-          name: mac-x64
-          path: llama-turboquant-mac-x64.zip
-
-  release:
-    needs: [win-cuda, mac-arm64, mac-x64]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          path: dist
-      - name: Publish release
+      - name: Publish to release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: binaries-v1
-          name: Prebuilt binaries (binaries-v1)
-          files: dist/**/*.zip
+          files: llama-turboquant-mac-x64.zip
