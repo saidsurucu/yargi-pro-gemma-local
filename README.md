@@ -60,7 +60,8 @@ Bitince sadece `.\scripts\start-server.ps1` çalıştırıp `opencode` aç. CUDA
 4. Hukuki soru sor; model `yargi-mcp-pro` araçlarıyla karar/mevzuat getirir.
 
 ## Ayarlar
-- Daha uzun context: `.\scripts\start-server.ps1 -Context 131072` (VRAM sıkışırsa `-Ngl 90` ile birkaç layer'ı CPU'ya taşı).
+- **Varsayılan context = 131072 (128K)**, K+V ikisi de `turbo3`. 16 GB'ye sığar (~15.9 GB) ama **çok dar** — başka GPU uygulaması (LM Studio, Chrome vb.) açıkken OOM olur, önce onları kapat.
+- Daha güvenli/küçük: `.\scripts\start-server.ps1 -Context 32768`. VRAM hâlâ sıkışırsa `-Ngl 90` ile birkaç layer'ı CPU'ya taşı.
 - Sunucu sağlığı: tarayıcıda `http://127.0.0.1:8080` veya `curl http://127.0.0.1:8080/v1/models`.
 
 ## Sorun giderme
@@ -73,4 +74,4 @@ Bitince sadece `.\scripts\start-server.ps1` çalıştırıp `opencode` aç. CUDA
 - **Tool-calling zayıfsa:** `--jinja` aktif olduğundan emin ol (start-server.ps1'de var).
 
 ## Performans (RTX 4060 Ti 16 GB, ölçülen)
-- ~70 token/s üretim, 8192 context. Model + turbo3 KV ~16 GB VRAM'i doldurur; daha büyük context için diğer GPU uygulamalarını kapat veya `-Ngl`'i düşür.
+- ~72 token/s üretim, **128K context** (K+V turbo3, -ngl 99), VRAM ~15.9/16 GB stabil. TurboQuant sayesinde 128K bağlam 16 GB'ye sığıyor; ama diğer GPU uygulamaları kapalı olmalı.

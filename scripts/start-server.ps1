@@ -1,7 +1,7 @@
 # llama-server'i Gemma 4 26B QAT + turbo3 KV ile baslatir.
 # Kullanim: .\start-server.ps1 [-Context 65536] [-Ngl 99]
 param(
-    [int]$Context = 65536,
+    [int]$Context = 131072,
     [int]$Ngl = 99,
     [int]$Port = 8080
 )
@@ -31,7 +31,7 @@ Write-Host "Model: $model | Context: $Context | Ngl: $Ngl | Port: $Port" -Foregr
     -m $model `
     -ngl $Ngl `
     -fa on `
-    --cache-type-k q8_0 `
+    --cache-type-k turbo3 `
     --cache-type-v turbo3 `
     -c $Context `
     --host 127.0.0.1 `
