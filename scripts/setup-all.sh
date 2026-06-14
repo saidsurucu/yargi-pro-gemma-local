@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
-# macOS/Metal tam kurulum: prereqler -> build -> model -> opencode + MCP.
-set -euo pipefail
+# Idiot-proof kurulum (macOS): on-kontrol -> brew(git/node) -> opencode -> prebuilt -> model ->
+# config -> launcher (.app). DERLEME YOK.
+set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-echo "=== Yargi Pro Local - Tam Kurulum (macOS/Metal) ==="
-
-# brew'i PATH'e al
+LOG="$ROOT/install.log"
 if [ -x /opt/homebrew/bin/brew ]; then eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ -x /usr/local/bin/brew ]; then eval "$(/usr/local/bin/brew shellenv)"; fi
 
-# --- prereqler ---
-for pkg in cmake git node; do
-  if ! command -v "$pkg" >/dev/null 2>&1; then echo "[KUR] $pkg"; brew install "$pkg"; else echo "[VAR] $pkg"; fi
-done
+step() {
+  echo "" | tee -a "$LOG"; echo "--- $1 ---" | tee -a "$LOG"
+  shift
+  if ! "$@" 2>&1 | tee -a "$LOG"; then
+    echo "KURULUM DURDU. Su dosyayi gonderin: $LOG"; read -r -p "Kapatmak icin Enter" _; exit 1
+  fi
+}
 
-echo "--- Inference engine derleniyor (Metal) ---"
-bash "$ROOT/scripts/build-llamacpp.sh"
+step "On-kontroller" bash "$ROOT/scripts/preflight.sh"
+for pkg in git node; do command -v "$pkg" >/dev/null 2>&1 || brew install "$pkg"; done
+step "opencode (CLI + desktop + config)" bash "$ROOT/scripts/install-opencode.sh"
+step "Prebuilt binary indirme" bash "$ROOT/scripts/get-binary.sh"
+step "Model indirme" bash "$ROOT/scripts/download-model.sh"
+step "Launcher (.app)" bash "$ROOT/scripts/install-launcher.sh"
 
-echo "--- Model indiriliyor (~14.2 GB) ---"
-bash "$ROOT/scripts/download-model.sh"
-
-echo "--- opencode (CLI + desktop) + Yargi Pro MCP ---"
-bash "$ROOT/scripts/install-opencode.sh"
-
-echo "=== HER SEY HAZIR ==="
-echo "Sunucu baslat: $ROOT/scripts/start-server.sh"
-echo "Sonra: opencode  (model: gemma-4-26b-qat)"
+echo "" ; echo "=== HER SEY HAZIR ==="
+echo "Launchpad'de 'Yargi Pro' uygulamasini ac."
