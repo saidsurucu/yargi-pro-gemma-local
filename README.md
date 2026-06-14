@@ -2,6 +2,22 @@
 
 opencode arayüzünden, **yerel** Gemma 4 26B QAT modeli (TheTom/llama-cpp-turboquant + turbo3 KV) ve **Yargı Pro remote MCP** ile Türk hukuku araştırması.
 
+## ⚡ Tek satır kurulum (Windows)
+
+Normal PowerShell'e yapıştır, UAC'ye **Evet** de — gerisi otomatik (Chocolatey, CMake, CUDA, derleme, model, opencode CLI+desktop, MCP):
+
+```powershell
+irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/install.ps1 | iex
+```
+
+cmd/bash içinden çalıştırmak için:
+
+```bash
+powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/install.ps1 | iex"
+```
+
+> İlk kurulum uzun sürer: CUDA Toolkit ~3 GB + derleme ~20-40 dk + model ~14 GB. Bitince `.\scripts\start-server.ps1` çalıştır, opencode'u aç.
+
 ## Donanım hedefi
 - GPU: NVIDIA RTX 4060 Ti 16 GB (CUDA, sm_89)
 - RAM: 32 GB+ önerilir
