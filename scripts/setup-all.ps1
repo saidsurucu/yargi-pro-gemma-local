@@ -14,13 +14,19 @@ $root = Split-Path -Parent $PSScriptRoot
 Write-Host "=== Yargi Pro Local - Tam Kurulum ===" -ForegroundColor Cyan
 Write-Host "Repo: $root`n"
 
-# PATH/CUDA_PATH'i kurulumlardan sonra mevcut surece yeniden yukler.
+# Kurulumlardan sonra TUM makine+user env degiskenlerini mevcut surece yukler.
+# (CUDA_PATH_V13_x dahil - VS CUDA .targets bunlari okur.)
 function Reload-Env {
+    foreach ($scope in 'Machine','User') {
+        $vars = [System.Environment]::GetEnvironmentVariables($scope)
+        foreach ($k in $vars.Keys) {
+            if ($k -ieq 'Path') { continue }
+            Set-Item -Path "Env:$k" -Value $vars[$k] -ErrorAction SilentlyContinue
+        }
+    }
     $m = [System.Environment]::GetEnvironmentVariable('Path','Machine')
     $u = [System.Environment]::GetEnvironmentVariable('Path','User')
     $env:Path = "$m;$u"
-    $cp = [System.Environment]::GetEnvironmentVariable('CUDA_PATH','Machine')
-    if ($cp) { $env:CUDA_PATH = $cp; $env:Path = "$env:Path;$cp\bin" }
 }
 
 # --- 2) Chocolatey ---

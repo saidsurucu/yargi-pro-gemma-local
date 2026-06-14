@@ -1,5 +1,13 @@
 # TheTom/llama-cpp-turboquant fork'unu klonlar ve CUDA ile derler.
 $ErrorActionPreference = 'Stop'
+
+# Makine+user env'ini tazele (CUDA_PATH, CUDA_PATH_V13_x, PATH) - VS CUDA .targets bunlari ister.
+foreach ($scope in 'Machine','User') {
+    $vars = [System.Environment]::GetEnvironmentVariables($scope)
+    foreach ($k in $vars.Keys) { if ($k -ine 'Path') { Set-Item -Path "Env:$k" -Value $vars[$k] -ErrorAction SilentlyContinue } }
+}
+$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
 $root = Split-Path -Parent $PSScriptRoot
 $vendor = Join-Path $root 'vendor\llama-cpp-turboquant'
 $repo = 'https://github.com/TheTom/llama-cpp-turboquant'
