@@ -1,4 +1,5 @@
-﻿models/
+models/
 *.gguf
+vendor/
 .env
-
+build/
