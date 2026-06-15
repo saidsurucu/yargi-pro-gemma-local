@@ -28,6 +28,11 @@ $cudaBin = Join-Path $env:CUDA_PATH 'bin'
 foreach ($pat in 'cudart64_*.dll','cublas64_*.dll','cublasLt64_*.dll') {
   Get-ChildItem $cudaBin -Filter $pat -ErrorAction SilentlyContinue | Copy-Item -Destination $stage -Force
 }
+# VC++ runtime DLL'leri (exe MSVC ile derlenir; temiz makinede yoksa yuklenemez)
+foreach ($d in 'vcruntime140.dll','vcruntime140_1.dll','msvcp140.dll','concrt140.dll') {
+  $vcSrc = Join-Path $env:SystemRoot "System32\$d"
+  if (Test-Path $vcSrc) { Copy-Item $vcSrc -Destination $stage -Force }
+}
 if (-not (Test-Path (Join-Path $stage 'llama-server.exe'))) { throw "llama-server.exe stage'de yok" }
 Write-Host "Paketlenen dosyalar:"; Get-ChildItem $stage | ForEach-Object { Write-Host "  $($_.Name)" }
 Compress-Archive -Path "$stage/*" -DestinationPath (Join-Path $PWD 'llama-turboquant-win-cuda.zip') -Force

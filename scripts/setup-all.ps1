@@ -24,6 +24,11 @@ function Step($name, $block) {
 Start-Transcript -Path $log -Append | Out-Null
 
 Step "On-kontroller" { & "$root\scripts\preflight.ps1"; if ($LASTEXITCODE -ne 0) { throw "on-kontrol basarisiz" } }
+Step "Visual C++ Runtime (vcredist)" {
+    # llama-server.exe MSVC ile derlenir; temiz makinede vcruntime140/msvcp140 yoksa exe yuklenemez.
+    choco install vcredist140 -y --no-progress
+    if ($LASTEXITCODE -ne 0 -and $LASTEXITCODE -ne 3010) { throw "vcredist kurulamadi (exit $LASTEXITCODE)" }
+}
 Step "opencode (CLI + desktop + config)" { & "$root\scripts\install-opencode.ps1" }
 Step "Prebuilt binary indirme" { & "$root\scripts\get-binary.ps1" }
 Step "Model indirme" { & "$root\scripts\download-model.ps1" }
