@@ -24,10 +24,16 @@ if (-not $model) { throw "models/ icinde .gguf yok - once download-model.ps1 cal
 $exe = Get-ChildItem -Path $vendor -Recurse -Filter 'llama-server.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
 if (-not $exe) { throw "llama-server.exe yok - once build-turboquant.ps1 calistirin" }
 
+$logDir = Join-Path $root 'logs'
+New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+$serverLog = Join-Path $logDir 'server.log'
+
 Write-Host "Baslatiliyor: $($exe.FullName)" -ForegroundColor Cyan
 Write-Host "Model: $model | Context: $Context | Ngl: $Ngl | Port: $Port" -ForegroundColor Cyan
+Write-Host "Log: $serverLog (crash olursa bu dosyayi gonderin)" -ForegroundColor DarkGray
 
 # Not: --cache-type-v turbo3, TheTom/llama-cpp-turboquant fork'una ozgudur; standart llama.cpp'de yoktur.
+# Cikti hem konsola hem logs\server.log'a yazilir (tray gizli pencerede baslattigi icin crash sebebi aksi halde kaybolur).
 & $exe.FullName `
     -m $model `
     -ngl $Ngl `
@@ -37,4 +43,4 @@ Write-Host "Model: $model | Context: $Context | Ngl: $Ngl | Port: $Port" -Foregr
     -c $Context `
     --host 127.0.0.1 `
     --port $Port `
-    --jinja
+    --jinja 2>&1 | Tee-Object -FilePath $serverLog

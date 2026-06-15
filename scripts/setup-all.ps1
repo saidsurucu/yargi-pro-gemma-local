@@ -17,6 +17,7 @@ function Step($name, $block) {
     try { & $block } catch {
         Write-Host "[HATA] $name : $($_.Exception.Message)" -ForegroundColor Red
         Write-Host "`nKURULUM DURDU. Su dosyayi gonderin: $log" -ForegroundColor Red
+        try { Stop-Transcript | Out-Null } catch {}  # log handle'ini birak: Read-Host'ta beklerken install.log kilitli kalmasin/okunabilsin
         Read-Host "Kapatmak icin Enter"; exit 1
     }
 }
