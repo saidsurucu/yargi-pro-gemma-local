@@ -15,13 +15,13 @@ $log  = Join-Path $root 'install.log'
 function Step($name, $block) {
     Write-Host "`n--- $name ---" -ForegroundColor Cyan
     try { & $block } catch {
-        ("[HATA] $name : $($_.Exception.Message)") | Tee-Object -FilePath $log -Append | Out-Host
+        Write-Host "[HATA] $name : $($_.Exception.Message)" -ForegroundColor Red
         Write-Host "`nKURULUM DURDU. Su dosyayi gonderin: $log" -ForegroundColor Red
         Read-Host "Kapatmak icin Enter"; exit 1
     }
 }
 
-Start-Transcript -Path $log -Append | Out-Null
+Start-Transcript -Path $log -Append -Force | Out-Null
 
 Step "On-kontroller" { & "$root\scripts\preflight.ps1"; if ($LASTEXITCODE -ne 0) { throw "on-kontrol basarisiz" } }
 Step "Visual C++ Runtime (vcredist)" {
