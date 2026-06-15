@@ -14,7 +14,7 @@ if ($LASTEXITCODE -ne 0) { throw "clone basarisiz" }
 # Onkosul: msvc-dev-cmd ile cl.exe ortamda + Ninja PATH'te.
 cmake -S $src -B "$src/build" -G Ninja -DCMAKE_BUILD_TYPE=Release -DGGML_CUDA=ON `
   "-DCMAKE_CUDA_ARCHITECTURES=75-real;86-real;89-real;120-real;120-virtual" `
-  -DLLAMA_CURL=OFF
+  -DLLAMA_CURL=OFF -DCMAKE_DISABLE_FIND_PACKAGE_OpenSSL=ON
 if ($LASTEXITCODE -ne 0) { throw "configure basarisiz" }
 cmake --build "$src/build" -j
 if ($LASTEXITCODE -ne 0) { throw "build basarisiz" }

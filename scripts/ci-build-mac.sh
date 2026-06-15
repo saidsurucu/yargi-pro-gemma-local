@@ -7,7 +7,7 @@ REPO="https://github.com/TheTom/llama-cpp-turboquant"
 SRC="$PWD/tq-src"; STAGE="$PWD/tq-mac"
 
 git clone --depth 1 "$REPO" "$SRC"
-cmake -S "$SRC" -B "$SRC/build" -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DLLAMA_CURL=OFF
+cmake -S "$SRC" -B "$SRC/build" -DGGML_METAL=ON -DGGML_METAL_EMBED_LIBRARY=ON -DLLAMA_CURL=OFF -DCMAKE_DISABLE_FIND_PACKAGE_OpenSSL=ON
 cmake --build "$SRC/build" --config Release -j
 
 mkdir -p "$STAGE"
