@@ -9,10 +9,13 @@ EXE="$DEST/llama-server"
 
 if [ -f "$EXE" ]; then echo "[VAR] llama-server"; exit 0; fi
 mkdir -p "$DEST"
-ZIP="$(mktemp -d)/b.zip"
+ZIP="${TMPDIR:-/tmp}/llama-turboquant-mac-$A.zip"  # sabit yol: yarim kalirsa -C - ile devam eder
 URL="https://github.com/saidsurucu/yargi-pro-gemma-local/releases/download/$REL/llama-turboquant-mac-$A.zip"
 echo "Prebuilt indiriliyor ($A)..."
-curl -L --retry 5 -o "$ZIP" "$URL"
+# -C - : kaldigi yerden devam; --retry-all-errors : connection reset gibi hatalarda da tekrar dene.
+# curl 33 = HTTP range error (416): dosya zaten tam inmis, hata sayma.
+curl -L -C - --retry 8 --retry-delay 5 --retry-all-errors -o "$ZIP" "$URL" \
+  || { c=$?; [ "$c" -eq 33 ] || { echo "binary indirilemedi (curl $c)"; exit 1; }; }
 unzip -o "$ZIP" -d "$DEST"
 [ -f "$EXE" ] || { echo "binary acilmadi: $EXE"; exit 1; }
 # KRITIK 1: karantina temizle
