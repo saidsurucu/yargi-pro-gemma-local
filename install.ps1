@@ -2,6 +2,8 @@
 # Kullanim (normal PowerShell):
 #   irm https://raw.githubusercontent.com/saidsurucu/yargi-pro-gemma-local/main/install.ps1 | iex
 $ErrorActionPreference = 'Stop'
+# Bu surec icin script calistirmayi ac (Restricted politikada & ile .ps1 cagrilari engelleniyor).
+Set-ExecutionPolicy -Scope Process Bypass -Force -ErrorAction SilentlyContinue
 
 # === Dagitim ayarlari (kendi repo'na gore degistir) ===
 $RepoUrl    = 'https://github.com/saidsurucu/yargi-pro-gemma-local.git'
