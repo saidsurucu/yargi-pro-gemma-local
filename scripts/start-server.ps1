@@ -1,9 +1,13 @@
 # llama-server'i Gemma 4 26B QAT + turbo3 KV ile baslatir.
-# Kullanim: .\start-server.ps1 [-Context 65536] [-Ngl 99]
+# Kullanim: .\start-server.ps1 [-Context 32768] [-Parallel 1] [-Ngl 99]
+# Not: benchmark (bench-prefill.ps1) sonucu: n_parallel=4 generation'i ~3x, buyuk context ~1.7x
+# yavaslatiyor. Tek kullanicili kullanimda Parallel=1 + makul context en hizlisi (~132 tok/s).
+# Daha uzun context gerekirse: -Context 131072 (gen ~77 tok/s'e duser).
 param(
-    [int]$Context = 131072,
+    [int]$Context = 32768,
     [int]$Ngl = 99,
-    [int]$Port = 8080
+    [int]$Port = 8080,
+    [int]$Parallel = 1
 )
 $ErrorActionPreference = 'Stop'
 
@@ -29,7 +33,7 @@ New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 $serverLog = Join-Path $logDir 'server.log'
 
 Write-Host "Baslatiliyor: $($exe.FullName)" -ForegroundColor Cyan
-Write-Host "Model: $model | Context: $Context | Ngl: $Ngl | Port: $Port" -ForegroundColor Cyan
+Write-Host "Model: $model | Context: $Context | Parallel: $Parallel | Ngl: $Ngl | Port: $Port" -ForegroundColor Cyan
 Write-Host "Log: $serverLog (crash olursa bu dosyayi gonderin)" -ForegroundColor DarkGray
 
 # Not: --cache-type-v turbo3, TheTom/llama-cpp-turboquant fork'una ozgudur; standart llama.cpp'de yoktur.
@@ -44,6 +48,7 @@ $ErrorActionPreference = 'Continue'
     --cache-type-k turbo3 `
     --cache-type-v turbo3 `
     -c $Context `
+    --parallel $Parallel `
     --host 127.0.0.1 `
     --port $Port `
     --jinja 2>&1 | Tee-Object -FilePath $serverLog
